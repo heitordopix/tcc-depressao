@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(159, 76, 237);
+        }
+
+        .quadrado {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+        }
+        .cabecalho {
+            background-color: purple;
+            height: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .corpo {
+            height: 550px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 30px;
+            margin: 10px;
+        }
+
+        input {
+            height: 30px;
+            font-size: 25px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="quadrado">
+        <div class="cabecalho">
+            <span>FORMULÁRIO</span>
+        </div>
+        <div class="corpo">
+            <div>
+                <label>Titulo</label><input name="TituloEvento" id="TituloEvento">
+            </div>
+            <div>
+                <label>Descrição</label><input name="Data" id="Data">
+            </div>
+            <div>
+                <label>Data</label><input type="datetime-local" name="Descricao" id="Descricao">
+            </div>
+
+            <div>
+                <button id="button" onclick="salvar()"><label>Salvar</label></button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const urlDoBackend = 'http://localhost:2050/api/salvar'
+        const inputTitulo = document.getElementById('TituloEvento')
+        const inputData = document.getElementById('Data')
+        const inputDescricao = document.getElementById('Descricao')
+        // document.getElementById('button').addEventListener('click', salvar)
+       
+        async function salvar() {
+            console.log(inputTitulo.value)
+            console.log(inputData.value)
+            console.log(inputDescricao.value)
+            
+            const dadosUsuario = 
+            {
+                titulo: inputTitulo.value,
+                descricao: inputData.value,
+                data: inputDescricao.value
+            }
+
+
+            try {
+                const dadosDeResposta = await axios.post(urlDoBackend, dadosUsuario)
+                console.log(dadosDeResposta)
+            } catch(error) {
+                console.log(error)
+            }
+            
+
+        }
+    </script>
+</body>
+</html>
