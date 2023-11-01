@@ -1,22 +1,26 @@
 const { Sequelize } = require('sequelize');
-const {sequelize} = require('./conexao.bancodedados')
+const {sequelize} = require('./conexaobancodedados')
 
 
-const TabelaExemplo = sequelize.define('TabelaExemplo', {
+const TabelaExemplo = sequelize.define('CiarEvento', {
     id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
-    dado1: {
+    TituloEvento: {
         type: Sequelize.STRING, 
     },
-    dado2: {
+    Data: {
         type: Sequelize.STRING
     }, 
+    Descricao: {
+        type: Sequelize.STRING
+    }, 
+
 }); 
 
-const ListagemEventos = sequelize.define('Jogos',{
+const ListagemEventos = sequelize.define('Eventos',{
     titulo: {
         type: Sequelize.INTEGER,
         primaryKey: true,
